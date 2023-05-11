@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -76,11 +77,11 @@ WSGI_APPLICATION = 'nba_stats.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'djongo',
-        'NAME': 'nba_stats',
+        'NAME': config('DB_NAME'),
         'CLIENT': {
             'host': 'mongodb+srv://<username>:<password>@cluster-uni-work.axy4lk0.mongodb.net/?retryWrites=true&w=majority',
-            'username': 'nba-stats',
-            'password': 'xmWeEPajobazH1PF',
+            'username': config('DB_USER'),
+            'password': config('DB_PASSWORD'),
             'authMechanism': 'SCRAM-SHA-1',
         }
     }
