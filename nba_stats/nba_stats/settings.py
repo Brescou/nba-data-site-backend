@@ -75,8 +75,14 @@ WSGI_APPLICATION = 'nba_stats.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'djongo',
+        'NAME': 'nba_stats',
+        'CLIENT': {
+            'host': 'mongodb+srv://<username>:<password>@cluster-uni-work.axy4lk0.mongodb.net/?retryWrites=true&w=majority',
+            'username': 'nba-stats',
+            'password': 'xmWeEPajobazH1PF',
+            'authMechanism': 'SCRAM-SHA-1',
+        }
     }
 }
 
