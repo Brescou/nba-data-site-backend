@@ -162,3 +162,6 @@ cython_debug/
 .vscode/
 /.idea/
 /.idea/inspectionProfiles/
+/.scannerwork/.sonar_lock
+/.scannerwork/report-task.txt
+./sonar_run.sh
