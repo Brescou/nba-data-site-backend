@@ -1,5 +1,6 @@
 from werkzeug.security import generate_password_hash, check_password_hash
-from .base import MongoModel
+from base import MongoModel
+
 
 class User(MongoModel):
     collection_name = 'users'
