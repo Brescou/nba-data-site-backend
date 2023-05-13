@@ -3,10 +3,8 @@ from flask_restful import Resource
 import jwt
 import datetime
 
-from app.main import api
+from app.extensions import api
 from app.model.user import User
-
-print('\033[31m' + 'Hello World' + '\033[0m')
 
 
 class Login(Resource):
