@@ -3,7 +3,7 @@ from flask import current_app
 from pymongo import MongoClient
 
 
-class Mongo(object):
+class Mongo:
     def __init__(self, app=None):
         if app is not None:
             self.init_app(app)
