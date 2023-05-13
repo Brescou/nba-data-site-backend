@@ -3,7 +3,7 @@ from flask_restful import Resource
 import jwt
 import datetime
 
-from app.extensions import api
+from app.api.v1 import api
 from app.model.user import User
 
 

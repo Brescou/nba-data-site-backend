@@ -1,15 +1,10 @@
-from app.service.db_mongo import Mongo
-
-mongo = Mongo()
-
+from flask_cors import CORS
 from flask_jwt_extended import JWTManager
+
+from app.service.db_mongo import Mongo
 
 jwt = JWTManager()
 
-from flask_cors import CORS
-
 cors = CORS()
 
-from flask_restful import Api
-
-api = Api()
+mongo = Mongo()
