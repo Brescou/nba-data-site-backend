@@ -8,7 +8,7 @@ class MongoModel:
     def get_collection(cls):
         if not cls.collection_name:
             raise NotImplementedError('No collection name set for this model.')
-        return current_app.mongo.db[cls.collection_name]
+        return current_app.mongo.client[cls.collection_name]
 
     @classmethod
     def find(cls, query):
@@ -25,5 +25,7 @@ class MongoModel:
     def insert(cls, document):
         cls.get_collection().insert_one(document)
 
-    def __init__(self, document):
+    def __init__(self, document=None):
+        if document is None:
+            document = {}
         self.document = document
