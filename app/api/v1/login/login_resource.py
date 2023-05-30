@@ -1,10 +1,12 @@
-from flask import request, current_app
-from flask_restful import Resource
-import jwt
 import datetime
 
+import jwt
+from flask import request, current_app
+from flask_restful import Resource
+from marshmallow import ValidationError
+
 from app.api.v1 import api
-from app.model.user import User
+from app.model.user import User, UserSchema
 
 
 class Login(Resource):
@@ -24,10 +26,18 @@ class Login(Resource):
         return {'message': 'Logged in successfully.', 'token': token}, 200
 
 
-class Test(Resource):
-    def get(self):
-        return {'message': 'Test'}, 200
+class Register(Resource):
+    def post(self):
+        data = request.get_json()
+        user_schema = UserSchema()
+        try:
+            valid_data = user_schema.load(data)
+        except ValidationError as err:
+            return {'messages': 'Invalid data', 'errors': err.messages}, 400
+        user = User()
+        user.create(data['username'], data['email'], data['password'])
+        return {'message': 'User created successfully.'}, 200
 
 
 api.add_resource(Login, '/login')
-api.add_resource(Test, '/test')
+api.add_resource(Register, '/register')
