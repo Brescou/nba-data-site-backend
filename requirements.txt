@@ -23,3 +23,5 @@ pytz==2023.3
 six==1.16.0
 Werkzeug==2.3.4
 WTForms==3.0.1
+
+marshmallow~=3.19.0
