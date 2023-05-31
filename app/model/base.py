@@ -25,6 +25,34 @@ class MongoModel:
     def insert(cls, document):
         cls.get_collection().insert_one(document)
 
+    @classmethod
+    def insert_many(cls, documents):
+        cls.get_collection().insert_many(documents)
+
+    @classmethod
+    def delete(cls, query):
+        cls.get_collection().delete_one(query)
+
+    @classmethod
+    def delete_many(cls, query):
+        cls.get_collection().delete_many(query)
+
+    @classmethod
+    def update(cls, query, update):
+        cls.get_collection().update_one(query, update)
+
+    @classmethod
+    def update_many(cls, query, update):
+        cls.get_collection().update_many(query, update)
+
+    @classmethod
+    def aggregate(cls, pipeline):
+        return cls.get_collection().aggregate(pipeline)
+
+    @classmethod
+    def count(cls, query):
+        return cls.get_collection().count(query)
+
     def __init__(self, document=None):
         if document is None:
             document = {}
