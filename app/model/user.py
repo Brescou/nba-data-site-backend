@@ -12,6 +12,16 @@ class User(MongoModel):
         user = {"username": username, "email": email, "password": generate_password_hash(password)}
         cls.insert(user)
 
+    def add_token(self, token):
+        self.update({"username": self.username}, {"$push": {"token": token}})
+
+    def remove_token(self, token):
+        self.update({"username": self.username}, {"$pull": {"token": token}})
+
+    @property
+    def token(self):
+        return self.document.get("token")
+
     @property
     def username(self):
         return self.document["username"]
