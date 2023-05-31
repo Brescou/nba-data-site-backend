@@ -1,11 +1,9 @@
-import datetime
-
-import jwt
-from flask import request, current_app
+from flask import request
 from flask_restful import Resource
 from marshmallow import ValidationError
 
 from app.api.v1 import api
+from app.auth.actions import create_token
 from app.model.user import User, UserSchema
 
 
@@ -17,12 +15,7 @@ class Login(Resource):
         user = User.find({'username': data['username']})
         if not user or not user.check_password(data['password']):
             return {'message': 'Invalid username or password.'}, 400
-        token = jwt.encode(
-            {'username': user.username, 'exp': datetime.datetime.utcnow() +
-                                               datetime.timedelta(days=7)},
-            current_app.config['SECRET_KEY'],
-            algorithm='HS256'
-        )
+        token = create_token(user)
         return {'message': 'Logged in successfully.', 'token': token}, 200
 
 
