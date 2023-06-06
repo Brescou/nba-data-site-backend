@@ -5,6 +5,9 @@ jobs:
   flask-app-build:
     docker:
       - image: cimg/python:3.10.2
+    environment:
+      FLASK_APP: app.py
+      FLASK_ENV: "testing"
     steps:
       - checkout
       - python/install-packages:
