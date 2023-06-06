@@ -1,10 +1,11 @@
 import flask
+import os
 from . import extensions, configs
 
-
-def create_app(config_name='default'):
+def create_app():
     app = flask.Flask(__name__)
-    configs.config[config_name](app)
+    _config = os.environ.get('FLASK_ENV', 'development')
+    configs.config[_config](app)
     register_extensions(app)
     register_blueprints(app)
     return app
