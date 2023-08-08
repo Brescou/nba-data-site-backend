@@ -10,11 +10,11 @@ from app.model.user import User, UserSchema
 class Login(Resource):
     def post(self):
         data = request.get_json()
-        if not data or not data.get('username') or not data.get('password'):
-            return {'message': 'Must provide username and password.'}, 400
-        user = User.find({'username': data['username']})
+        if not data or not data.get('email') or not data.get('password'):
+            return {'message': 'Must provide email and password.'}, 400
+        user = User.find({'email': data['email']})
         if not user or not user.check_password(data['password']):
-            return {'message': 'Invalid username or password.'}, 400
+            return {'message': 'Invalid email or password.'}, 400
         token = create_token(user)
         return {'message': 'Logged in successfully.', 'token': token}, 200
 
