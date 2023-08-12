@@ -1,4 +1,5 @@
 import datetime
+
 from decouple import config
 
 DB_CONNECTION = {

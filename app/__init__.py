@@ -1,6 +1,9 @@
-import flask
 import os
+
+import flask
+
 from . import extensions, configs
+
 
 def create_app():
     app = flask.Flask(__name__)

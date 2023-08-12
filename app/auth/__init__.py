@@ -1,5 +1,6 @@
-from flask import g, request
 from functools import wraps
+
+from flask import g, request
 
 from app.auth.actions import validate_token
 from app.model.user import User
