@@ -21,5 +21,5 @@ def validate_token(token):
     except jwt.ExpiredSignatureError:
 
         return 'Token expired, please log in again.'
-    except:
+    except jwt.InvalidTokenError:
         return 'Token is invalid.'
