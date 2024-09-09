@@ -10,8 +10,8 @@ flask-mongoengine==1.0.0
 Flask-RESTful==0.3.10
 Flask-Script==2.0.6
 Flask-WTF==1.1.1
-idna==3.4
 itsdangerous==2.2.0
+idna==3.8
 Jinja2==3.1.4
 MarkupSafe==2.1.5
 mongoengine==0.27.0
