@@ -53,6 +53,10 @@ class MongoModel:
     def count(cls, query):
         return cls.get_collection().count(query)
 
+    @classmethod
+    def find_pagination(cls, query, page, limit):
+        return [cls(item) for item in cls.get_collection().find(query).skip((page - 1) * limit).limit(limit)]
+
     def __init__(self, document=None):
         if document is None:
             document = {}
